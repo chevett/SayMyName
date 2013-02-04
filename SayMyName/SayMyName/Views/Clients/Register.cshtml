@@ -1,0 +1,35 @@
+﻿@model SayMyName.Models.RegistrationViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<title></title>
+</head>
+	<body>
+		<h1>Register</h1>
+		<div>
+			@using(Html.BeginForm())
+			{
+				<ul>
+					<li>
+						@Html.LabelFor(m => m.Description)
+						@Html.TextBoxFor(m => m.Description)
+					</li>
+					<li>
+						@Html.LabelFor(m => m.Fingerprint)
+						@Html.TextBoxFor(m => m.Fingerprint)
+					</li>
+					<li>
+						@Html.LabelFor(m => m.Location)
+						@Html.TextBoxFor(m => m.Location)
+					</li>
+				</ul>
+			}
+		</div>
+	</body>
+</html>
