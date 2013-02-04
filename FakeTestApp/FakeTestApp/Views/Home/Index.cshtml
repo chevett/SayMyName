@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+this is the index of FakeTextApp
+@section scripts{
+	<script type="text/javascript" async>
+		jQuery(function () {
+			jQuery.getScript("http://localhost:52354/scripts/jquery.signalR-1.0.0-rc2.min.js", function () { 
+				jQuery.getScript("http://localhost:52354/signalr/hubs", function () { 
+					jQuery.getScript("http://localhost:52354/scripts/clientstartup.js", function () { 
+						window.SayMyName.Listener.start(window.SayMyName.Fingerprint.get());
+					});
+				});
+			});
+		});
+	</script>
+}
