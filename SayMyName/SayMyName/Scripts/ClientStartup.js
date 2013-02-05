@@ -2,11 +2,11 @@
 
 var SayMyName = SayMyName || {};
 
+
+SayMyName.messageTypes = { Redirect: 0, Register: 1, };
+SayMyName.messageTypeLabels = { 0: 'Redirect', 1: 'Register', };
+
 SayMyName.Listener = (function ($) {
-	var _mine = {
-		messageTypes: { Redirect: 0, Register: 1, },
-		messageTypeLabels: { 0: 'Redirect', 1: 'Register', },
-	};
 
 	function _hiddenInput(name, value) {
 		return $("<input type='hidden'/>")
@@ -14,33 +14,46 @@ SayMyName.Listener = (function ($) {
 			.attr("value", value);
 	}
 
-	function _start(fingerprint) {
+	function _sendStartedMessage(opt) {
+		$.connection.clientHub.server.clientConnected(opt.fingerprint, encodeURIComponent(window.location));
+	}
 
-		$.connection.hub.start(function() {
-			$.connection.clientHub.client.commandReceived = function (msg) {
-				switch (msg.type) {
-					case _mine.messageTypes.Redirect:
-						window.location = message.location;
-						return;
+	function _start(opt) {
+		$.connection.hub.url = opt.url;
+		$.connection.hub.start(function () {
+		
+			
 
-					case _mine.messageTypes.Register:
-						$("<form method='post'></form>")
-							.append(_hiddenInput("Location", window.location))
-							.append(_hiddenInput("Fingerprint", fingerprint))
-							.attr("action", msg.location)
-							.appendTo($("body"))
-							.submit();
-						return;
-				}
-			};
+			$.connection.hub.error(function (a) {
+				console.log(a);
+			});
 
-			$.connection.clientHub.server.clientConnected(fingerprint, window.location);
+			_sendStartedMessage(opt);
+			
 		});
+		
 
+		$.connection.clientHub.client.commandReceived = function (msg) {
+			switch (msg.type) {
+				case SayMyName.messageTypes.Redirect:
+					window.location = decodeURIComponent(message.location);
+					return;
+
+				case SayMyName.messageTypes.Register:
+					$("<form method='post'></form>")
+						.append(_hiddenInput("Location", encodeURIComponent(window.location)))
+						.append(_hiddenInput("Fingerprint", opt.fingerprint))
+						.attr("action", decodeURIComponent(msg.location))
+						.appendTo($("body"))
+						.submit();
+					return;
+			}
+		};
 	}
 
 	return {
 		start: _start,
+		resend: _sendStartedMessage,
 	};
 })(jQuery);
 

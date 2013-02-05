@@ -7,11 +7,35 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Remote Control</title>
 </head>
 <body>
-    <div>
-        yup this is the index of SayMyName
-    </div>
+	<ul id="container">
+		
+	</ul>
+	
+	
+	<script src="@Url.Content("~/Scripts/jquery-1.9.0.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/jquery.signalR-1.0.0-rc2.js")"></script>
+	<script src="/signalr/hubs" type="text/javascript"></script>
+	<script src="@Url.Content("~/Scripts/ClientStartup.js")"></script>
+	
+	<script>
+		(function () {
+
+			var $container = $("#container");
+
+			$(function () {
+				$.connection.hub.start(function () {
+
+				});
+
+				$.connection.clientHub.client.commandReceived = function (msg) {
+					$container.append($("<li></li>").text(SayMyName.messageTypeLabels[msg.type] + " - " + msg.fingerprint + " - " + msg.location));
+				};
+			});
+		})();
+		
+	</script>
 </body>
 </html>

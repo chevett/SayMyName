@@ -1,16 +1,16 @@
 ﻿@{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "FakeApp";
 }
 
-<h2>Index</h2>
+<h2>FakeApp</h2>
 this is the index of FakeTextApp
 @section scripts{
 	<script type="text/javascript" async>
 		jQuery(function () {
-			jQuery.getScript("http://localhost:52354/scripts/jquery.signalR-1.0.0-rc2.min.js", function () { 
-				jQuery.getScript("http://localhost:52354/signalr/hubs", function () { 
-					jQuery.getScript("http://localhost:52354/scripts/clientstartup.js", function () { 
-						window.SayMyName.Listener.start(window.SayMyName.Fingerprint.get());
+			jQuery.getScript("http://localhost:52354/scripts/jquery.signalR-1.0.0-rc2.min.js", function () {
+				jQuery.getScript("http://localhost:52354/signalr/hubs", function () {
+					jQuery.getScript("http://localhost:52354/scripts/clientstartup.js", function () {
+						SayMyName.Listener.start({ fingerprint: SayMyName.Fingerprint.get(), url: 'http://localhost:52354/signalr' });
 					});
 				});
 			});

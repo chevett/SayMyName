@@ -13,7 +13,8 @@ namespace SayMyName.Core
 			Clients.All.commandReceived(new
 				{
 					type = ClientMessageType.Register,
-					location = Constants.RootUrl + "/register"
+					location = Constants.RootUrl + "/register",
+					fingerprint,
 				});
 		}
 	}

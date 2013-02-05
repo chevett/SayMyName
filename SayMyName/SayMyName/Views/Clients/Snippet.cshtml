@@ -17,7 +17,7 @@
 				jQuery.getScript("@Constants.RootUrl/scripts/jquery.signalR-1.0.0-rc2.min.js", function () { 
 					jQuery.getScript("@Constants.RootUrl/signalr/hubs", function () { 
 						jQuery.getScript("@Constants.RootUrl/scripts/clientstartup.js", function () { 
-							SayMyName.Listener.start(SayMyName.Fingerprint.get()); 
+							SayMyName.Listener.start({fingerprint:SayMyName.Fingerprint.get(), url:'@Constants.RootUrl/signalr'}); 
 						});
 					});
 				});
@@ -29,7 +29,8 @@
 		<pre>
 		<code>
 
-		&lt;script type=&quot;text/javascript&quot; async&gt;<br/>			jQuery(function () {<br/>				jQuery.getScript(&quot;@Constants.RootUrl/scripts/jquery.signalR-1.0.0-rc2.min.js&quot;, function () { <br/>					jQuery.getScript(&quot;@Constants.RootUrl/signalr/hubs&quot;, function () { <br/>						jQuery.getScript(&quot;@Constants.RootUrl/scripts/clientstartup.js&quot;, function () { <br/>							SayMyName.Listener.start(SayMyName.Fingerprint.get()); <br/>						});<br/>					});<br/>				});<br/>			});<br/>		&lt;/script&gt;
+		&lt;script type=&quot;text/javascript&quot; async&gt;<br/>			jQuery(function () {<br/>				jQuery.getScript(&quot;@Constants.RootUrl/scripts/jquery.signalR-1.0.0-rc2.min.js&quot;, function () { <br/>					jQuery.getScript(&quot;@Constants.RootUrl/signalr/hubs&quot;, function () { <br/>						jQuery.getScript(&quot;@Constants.RootUrl/scripts/clientstartup.js&quot;, function () { <br/>							SayMyName.Listener.start({fingerprint:SayMyName.Fingerprint.get(), url:'@Constants.RootUrl/signalr'}); <br/>						});<br/>					});<br/>				});<br/>			});<br/>		&lt;/script&gt;
+	
 		</code>
 	</pre>
 	</body>
