@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace SayMyName.Controllers
 {
-	public class HomeController : Controller
+	public class MasterController : Controller
 	{
 		[HttpGet]
 		public ActionResult Index()

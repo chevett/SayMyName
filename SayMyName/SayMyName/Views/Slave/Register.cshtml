@@ -1,17 +1,15 @@
-﻿@model SayMyName.Models.RegistrationViewModel
+﻿@model SayMyName.Models.SlaveViewModel
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
 	<meta name="viewport" content="width=device-width" />
 	<title></title>
 </head>
 	<body>
-		<h1>Register</h1>
+		<h1>Slave Registration</h1>
 		<div>
 			@using(Html.BeginForm())
 			{
@@ -22,11 +20,11 @@
 					</li>
 					<li>
 						@Html.LabelFor(m => m.Fingerprint)
-						@Html.TextBoxFor(m => m.Fingerprint)
+						@Html.TextBoxFor(m => m.Fingerprint, new { @readonly="readonly"})
 					</li>
 					<li>
-						@Html.LabelFor(m => m.Location)
-						@Html.TextBoxFor(m => m.Location)
+						@Html.LabelFor(m => m.CurrentLocation)
+						@Html.TextBoxFor(m => m.CurrentLocation, new { @readonly="readonly"})
 					</li>
 				</ul>
 			}

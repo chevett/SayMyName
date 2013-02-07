@@ -2,9 +2,9 @@
 using System.Web.Routing;
 using Microsoft.AspNet.SignalR;
 
-[assembly: PreApplicationStartMethod(typeof(SayMyName.RegisterHubs), "Start")]
+[assembly: PreApplicationStartMethod(typeof(SayMyName.App_Start.RegisterHubs), "Start")]
 
-namespace SayMyName
+namespace SayMyName.App_Start
 {
 	public static class RegisterHubs
 	{

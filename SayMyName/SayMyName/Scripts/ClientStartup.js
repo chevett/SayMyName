@@ -1,12 +1,19 @@
-﻿
-
-var SayMyName = SayMyName || {};
-
+﻿var SayMyName = SayMyName || {};
 
 SayMyName.messageTypes = { Redirect: 0, Register: 1, };
 SayMyName.messageTypeLabels = { 0: 'Redirect', 1: 'Register', };
 
 SayMyName.Listener = (function ($) {
+	var data;
+	
+	function _getIpAddress() {
+		$.getScript("http://jsonip.appspot.com/?callback=SayMyName.Listener.yourIpSir");
+	}
+	
+	function _getIpAddressComplete(ipData) {
+		data.ip = ipData.ip;
+		_connect();
+	}
 
 	function _hiddenInput(name, value) {
 		return $("<input type='hidden'/>")
@@ -14,26 +21,19 @@ SayMyName.Listener = (function ($) {
 			.attr("value", value);
 	}
 
-	function _sendStartedMessage(opt) {
-		$.connection.clientHub.server.clientConnected(opt.fingerprint, encodeURIComponent(window.location));
+	function _start(opt) {
+		data = opt;
+		_getIpAddress();
 	}
 
-	function _start(opt) {
-		$.connection.hub.url = opt.url;
+	function _connect() {
+		$.connection.hub.url = data.url;
 		$.connection.hub.start(function () {
-		
-			
-
-			$.connection.hub.error(function (a) {
-				console.log(a);
-			});
-
-			_sendStartedMessage(opt);
-			
+			$.connection.hub.error(function (a) {console.log(a);});
+			$.connection.masterHub.server.clientConnected(data.ip, data.fingerprint, encodeURIComponent(window.location));
 		});
 		
-
-		$.connection.clientHub.client.commandReceived = function (msg) {
+		$.connection.slaveHub.client.commandReceived = function (msg) {
 			switch (msg.type) {
 				case SayMyName.messageTypes.Redirect:
 					window.location = decodeURIComponent(message.location);
@@ -53,7 +53,7 @@ SayMyName.Listener = (function ($) {
 
 	return {
 		start: _start,
-		resend: _sendStartedMessage,
+		yourIpSir: _getIpAddressComplete
 	};
 })(jQuery);
 

@@ -1,0 +1,46 @@
+﻿@using SayMyName.Core
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Remote Control</title>
+</head>
+	<body>
+		still working on it...
+		<ul id="container">
+		
+		</ul>
+		<script id="message-template" type="text/x-handlebars-template">
+			<li>
+				{{ipAddress}} - {{description}} - {{fingerprint}} - {{type}}
+			</li>
+		</script>
+		<script src="@Url.Content("~/Scripts/jquery-1.9.0.min.js")"></script>
+		<script src="@Url.Content("~/Scripts/jquery.signalR-1.0.0-rc2.js")"></script>
+		<script src="/signalr/hubs" type="text/javascript"></script>
+		<script src="@Url.Content("~/Scripts/handlebars.js")"></script>
+	
+		<script>
+			(function () {
+				
+
+				$(function () {
+					var $container = $("#container"), template = Handlebars.compile($("message-template").html());
+					$.connection.hub.start(function () {
+
+					});
+
+					$.connection.masterHub.client.commandReceived = function (msg) {
+						template(msg);
+					};
+				});
+			})();
+		
+		</script>
+	</body>
+</html>
