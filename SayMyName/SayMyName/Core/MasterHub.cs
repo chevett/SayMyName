@@ -10,12 +10,12 @@ namespace SayMyName.Core
 {
 	public class MasterHub : Hub
 	{
-		public void SlaveConnected(string slaveIp, string slaveFingerprint, string slaveLocation)
+		public void SlaveConnected(string slaveFingerprint, string slaveLocation)
 		{
 			ObjectFactory.GetInstance<IMasterMessagePublisher>().SlaveConnected(new SlaveViewModel
 				{
 					CurrentLocation =  slaveLocation,
-					IpAddress = slaveIp,
+					IpAddress = IpAddress.Current(),
 					Fingerprint = slaveFingerprint,
 				});
 		}

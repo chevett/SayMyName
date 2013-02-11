@@ -16,12 +16,15 @@ namespace SayMyName.App_Start
 			ObjectFactory.Initialize(fact =>
 				{
 					fact.For<ISlaveMessagePublisher>()
-					    .Singleton()
-					    .Use<SlaveMessagePublisher>();
+						.Singleton()
+						.Use<SlaveMessagePublisher>();
 
 					fact.For<IMasterMessagePublisher>()
 						.Singleton()
 						.Use<MasterMessagePublisher>();
+
+					fact.For<HttpContextBase>()
+						.Use(() => new HttpContextWrapper(HttpContext.Current));
 				});
 		}
 	}

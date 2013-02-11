@@ -15,7 +15,7 @@
     <AssemblyName>SayMyName</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -128,6 +128,7 @@
     <Compile Include="App_Start\RegisterHubs.cs" />
     <Compile Include="Controllers\SlaveController.cs" />
     <Compile Include="Controllers\MasterController.cs" />
+    <Compile Include="Core\IpAddress.cs" />
     <Compile Include="Core\SlaveHub.cs" />
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\MessagePublisher.cs" />
@@ -190,9 +191,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>56799</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52354/</IISUrl>
+          <IISUrl>http://localhost/SayMyName</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

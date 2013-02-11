@@ -7,6 +7,6 @@ namespace SayMyName.Core
 {
 	public static class Constants
 	{
-		public static string RootUrl = "http://localhost:52354";
+		public static string RootUrl = "http://localhost/SayMyName";
 	}
 }

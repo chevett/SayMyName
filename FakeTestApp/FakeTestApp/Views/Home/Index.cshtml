@@ -7,13 +7,13 @@ this is the index of FakeTextApp
 @section scripts{
 	<script type="text/javascript" async>
 		jQuery(function () {
-			jQuery.getScript("http://localhost:52354/scripts/jquery.signalR-1.0.0-rc2.min.js", function () {
-				jQuery.getScript("http://localhost:52354/signalr/hubs", function () {
-					jQuery.getScript("http://localhost:52354/scripts/clientstartup.js", function () {
-						SayMyName.Listener.start({ fingerprint: SayMyName.Fingerprint.get(), url: 'http://localhost:52354/signalr' });
+			jQuery.getScript("http://localhost/SayMyName/scripts/jquery.signalR-1.0.0-rc2.min.js", function () {
+				jQuery.getScript("http://localhost/SayMyName/signalr/hubs", function () {
+					jQuery.getScript("http://localhost/SayMyName/scripts/clientstartup.js", function () {
+						SayMyName.Listener.start({ fingerprint: SayMyName.Fingerprint.get(), url: 'http://localhost/SayMyName/signalr' });
 					});
 				});
 			});
 		});
-	</script>
+		</script>
 }

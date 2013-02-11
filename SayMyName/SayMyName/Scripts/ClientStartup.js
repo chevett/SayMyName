@@ -6,15 +6,6 @@ SayMyName.messageTypeLabels = { 0: 'Redirect', 1: 'Register', };
 SayMyName.Listener = (function ($) {
 	var data;
 	
-	function _getIpAddress() {
-		$.getScript("http://jsonip.appspot.com/?callback=SayMyName.Listener.yourIpSir");
-	}
-	
-	function _getIpAddressComplete(ipData) {
-		data.ip = ipData.ip;
-		_connect();
-	}
-
 	function _hiddenInput(name, value) {
 		return $("<input type='hidden'/>")
 			.attr("name", name)
@@ -23,14 +14,11 @@ SayMyName.Listener = (function ($) {
 
 	function _start(opt) {
 		data = opt;
-		_getIpAddress();
-	}
 
-	function _connect() {
 		$.connection.hub.url = data.url;
 		$.connection.hub.start(function () {
 			$.connection.hub.error(function (a) {console.log(a);});
-			$.connection.masterHub.server.clientConnected(data.ip, data.fingerprint, encodeURIComponent(window.location));
+			$.connection.masterHub.server.slaveConnected(data.fingerprint, encodeURIComponent(window.location));
 		});
 		
 		$.connection.slaveHub.client.commandReceived = function (msg) {
@@ -53,7 +41,6 @@ SayMyName.Listener = (function ($) {
 
 	return {
 		start: _start,
-		yourIpSir: _getIpAddressComplete
 	};
 })(jQuery);
 

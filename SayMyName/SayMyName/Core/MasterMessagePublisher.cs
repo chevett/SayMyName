@@ -10,7 +10,7 @@ namespace SayMyName.Core
 	{
 		public void SlaveConnected(SlaveViewModel slaveViewModel)
 		{
-			Context.Clients.All.messageReceived(new {
+			Context.Clients.All.commandReceived(new {
 				currentLocation = slaveViewModel.CurrentLocation,
 				description = slaveViewModel.Description,
 				fingerprint = slaveViewModel.Fingerprint,
