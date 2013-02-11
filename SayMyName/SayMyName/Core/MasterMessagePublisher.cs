@@ -8,28 +8,49 @@ namespace SayMyName.Core
 {
 	public class MasterMessagePublisher : MessagePublisher<MasterHub>, IMasterMessagePublisher
 	{
-		public void SlaveConnected(SlaveViewModel slaveViewModel)
+		public void KnownSlaveConnected(SlaveViewModel slaveViewModel)
 		{
-			Context.Clients.All.commandReceived(new {
-				currentLocation = slaveViewModel.CurrentLocation,
-				description = slaveViewModel.Description,
-				fingerprint = slaveViewModel.Fingerprint,
-				ipAddress = slaveViewModel.IpAddress,
-				type = MasterMessageType.SlaveConnected
-			});
+			SendMessage(slaveViewModel, MasterMessageType.KnownSlaveConnected);
 		}
 
+		public void UnknownSlaveConnected(SlaveViewModel slaveViewModel)
+		{
+			SendMessage(slaveViewModel, MasterMessageType.UnknownSlaveConnected);
+		}
 
+		class MasterMessage
+		{
+			public string currentLocation, description, fingerprint, ipAddress;
+			public MasterMessageType type;
+		}
 
-		
+		private void SendMessage(SlaveViewModel slaveViewModel, MasterMessageType masterMessageType)
+		{
+			Context.Clients.All.commandReceived(CreateMessage(slaveViewModel, masterMessageType));
+		}
 
+		private MasterMessage CreateMessage(SlaveViewModel slaveViewModel, MasterMessageType masterMessageType)
+		{
+			return new MasterMessage
+				{
+					currentLocation = slaveViewModel.CurrentLocation,
+					description = slaveViewModel.Description,
+					fingerprint = slaveViewModel.Fingerprint,
+					ipAddress = slaveViewModel.IpAddress,
+					type = masterMessageType
+				};
+		}
 	}
+
 	public enum MasterMessageType
 	{
-		SlaveConnected = 0,
+		KnownSlaveConnected = 0,
+		UnknownSlaveConnected = 1,
 	}
+
 	public interface IMasterMessagePublisher
 	{
-		void SlaveConnected(SlaveViewModel slaveViewModel);
+		void KnownSlaveConnected(SlaveViewModel slaveViewModel);
+		void UnknownSlaveConnected(SlaveViewModel slaveViewModel);
 	}
 }

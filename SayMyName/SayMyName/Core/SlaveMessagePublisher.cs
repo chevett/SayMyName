@@ -16,11 +16,13 @@ namespace SayMyName.Core
 			});
 		}
 
-		public void SendRegisterCommand(Uri url)
+		public void SendRegisterCommand(string ipAddress)
 		{
+			// todo: make this only message the client with the matching ipAddress.
+
 			Context.Clients.All.commandReceived(new
 			{
-				command = SlaveCommand.Register,
+				type = SlaveCommand.Register,
 				location = Constants.RootUrl + "/register",
 			});
 		}
@@ -29,6 +31,6 @@ namespace SayMyName.Core
 	public interface ISlaveMessagePublisher
 	{
 		void SendRedirectCommand(Uri url);
-		void SendRegisterCommand(Uri url);
+		void SendRegisterCommand(string ipAddress);
 	}
 }

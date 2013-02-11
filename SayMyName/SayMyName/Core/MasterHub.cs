@@ -12,7 +12,7 @@ namespace SayMyName.Core
 	{
 		public void SlaveConnected(string slaveFingerprint, string slaveLocation)
 		{
-			ObjectFactory.GetInstance<IMasterMessagePublisher>().SlaveConnected(new SlaveViewModel
+			ObjectFactory.GetInstance<SlaveManager>().SlaveConnected(new SlaveViewModel
 				{
 					CurrentLocation =  slaveLocation,
 					IpAddress = IpAddress.Current(),

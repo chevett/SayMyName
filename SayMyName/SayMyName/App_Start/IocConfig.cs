@@ -25,6 +25,10 @@ namespace SayMyName.App_Start
 
 					fact.For<HttpContextBase>()
 						.Use(() => new HttpContextWrapper(HttpContext.Current));
+
+					fact.For<SlaveManager>()
+						.Singleton()
+						.Use<SlaveManager>();
 				});
 		}
 	}

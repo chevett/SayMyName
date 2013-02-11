@@ -22,14 +22,14 @@
 		</script>
 		<script src="@Url.Content("~/Scripts/jquery-1.9.0.min.js")"></script>
 		<script src="@Url.Content("~/Scripts/jquery.signalR-1.0.0-rc2.js")"></script>
-		<script src="@Constants.RootUrl/signalr/hubs" type="text/javascript"></script>
+		<script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
 		<script src="@Url.Content("~/Scripts/handlebars.js")"></script>
 	
 		<script>
 			(function () {
 				var messageTypes = {
-					Values: { SlaveConnected: 0, },
-					Labels: { 0:'SlaveConnected', },
+					Values: { KnownSlaveConnected: 0, UnknownSlaveConnected: 1, },
+					Labels: { 0: 'KnownSlaveConnected', 1: 'UnknownSlaveConnected' },
 				};
 
 				$(function () {

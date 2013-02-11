@@ -134,6 +134,7 @@
     <Compile Include="Core\MessagePublisher.cs" />
     <Compile Include="Core\MasterHub.cs" />
     <Compile Include="Core\MasterMessagePublisher.cs" />
+    <Compile Include="Core\SlaveManager.cs" />
     <Compile Include="Core\SlaveMessagePublisher.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
