@@ -29,7 +29,7 @@ SayMyName.Listener = (function ($) {
 
 				case SayMyName.messageTypes.Register:
 					$("<form method='post'></form>")
-						.append(_hiddenInput("Location", encodeURIComponent(window.location)))
+						.append(_hiddenInput("Location", window.location))
 						.append(_hiddenInput("Fingerprint", opt.fingerprint))
 						.attr("action", decodeURIComponent(msg.location))
 						.appendTo($("body"))

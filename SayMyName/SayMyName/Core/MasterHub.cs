@@ -14,7 +14,7 @@ namespace SayMyName.Core
 		{
 			ObjectFactory.GetInstance<SlaveManager>().SlaveConnected(new SlaveViewModel
 				{
-					CurrentLocation =  slaveLocation,
+					Location =  slaveLocation,
 					IpAddress = IpAddress.Current(),
 					Fingerprint = slaveFingerprint,
 				});

@@ -13,6 +13,7 @@
 		<div>
 			@using(Html.BeginForm())
 			{
+
 				<ul>
 					<li>
 						@Html.LabelFor(m => m.Description)
@@ -23,10 +24,12 @@
 						@Html.TextBoxFor(m => m.Fingerprint, new { @readonly="readonly"})
 					</li>
 					<li>
-						@Html.LabelFor(m => m.CurrentLocation)
-						@Html.TextBoxFor(m => m.CurrentLocation, new { @readonly="readonly"})
+						@Html.LabelFor(m => m.Location)
+						@Html.TextBoxFor(m => m.Location, new { @readonly="readonly"})
 					</li>
 				</ul>
+
+				<input type="submit" value="Register" />
 			}
 		</div>
 	</body>

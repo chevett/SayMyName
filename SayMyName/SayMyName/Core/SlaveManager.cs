@@ -22,7 +22,7 @@ namespace SayMyName.Core
 				{
 					IpAddress = slaveViewModel.IpAddress,
 					Fingerprint = slaveViewModel.Fingerprint,
-					LastKnownLocation = slaveViewModel.CurrentLocation,
+					LastKnownLocation = slaveViewModel.Location,
 					RegistrationDateTime = DateTime.UtcNow,
 					LastConnectDateTime = DateTime.UtcNow,
 				});
@@ -37,10 +37,10 @@ namespace SayMyName.Core
 			}
 			else
 			{
+				masterMessagePublisher.UnknownSlaveConnected(slaveViewModel);
+
 				var slaveMessagePublisher = ObjectFactory.GetInstance<ISlaveMessagePublisher>();
 				slaveMessagePublisher.SendRegisterCommand(slaveViewModel.IpAddress);
-
-				masterMessagePublisher.UnknownSlaveConnected(slaveViewModel);
 			}
 		}
 
