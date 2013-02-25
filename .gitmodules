@@ -1,0 +1,3 @@
+[submodule "SayMyName/SmallDataStore"]
+	path = SayMyName/SmallDataStore
+	url = git@github.com:chevett/SmallDataStore.git

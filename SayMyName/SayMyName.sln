@@ -10,6 +10,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{04A3DD
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallDataStore", "SmallDataStore\SmallDataStore\SmallDataStore\SmallDataStore.csproj", "{2C74831D-1F66-481D-9A3C-45D703F63869}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SayMyName.Models", "SayMyName.Models\SayMyName.Models.csproj", "{872213BC-21AA-4E9A-AB2B-16A6D6E401C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{BD766680-075B-424C-BD3F-2F53FA506F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD766680-075B-424C-BD3F-2F53FA506F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD766680-075B-424C-BD3F-2F53FA506F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C74831D-1F66-481D-9A3C-45D703F63869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C74831D-1F66-481D-9A3C-45D703F63869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C74831D-1F66-481D-9A3C-45D703F63869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C74831D-1F66-481D-9A3C-45D703F63869}.Release|Any CPU.Build.0 = Release|Any CPU
+		{872213BC-21AA-4E9A-AB2B-16A6D6E401C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{872213BC-21AA-4E9A-AB2B-16A6D6E401C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{872213BC-21AA-4E9A-AB2B-16A6D6E401C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{872213BC-21AA-4E9A-AB2B-16A6D6E401C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
